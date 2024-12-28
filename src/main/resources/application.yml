@@ -23,7 +23,7 @@ mybatis:
     map-underscore-to-camel-case: true
 
 jwt:
-  secret: your_jwt_secret_key_here_make_it_long_and_secure
+  secret: 8Zz5tw0Ionm3XPZZfN0NOml3z9FMfmpgXwovR9fp6ryDIoGRM8EPHAB6iHsc0fb
   expiration: 86400000  # 24小时
 
 file:
