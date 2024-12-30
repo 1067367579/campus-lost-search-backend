@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.example.campuslostsearch.mapper.ItemMapper">
+    <insert id="saveImages">
+        insert into item_images (url, item_id) VALUES
+            <foreach collection="images" separator="," item="image">
+                (#{image},#{itemId})
+            </foreach>
+    </insert>
+    <delete id="deleteImages">
+        delete from item_images where url in
+            <foreach collection="images" item="image" separator="," open="(" close=")">
+                #{image}
+            </foreach>
+    </delete>
+
+    <select id="pageQuery" resultType="com.example.campuslostsearch.pojo.entity.Item">
+        select * from item
+        <where>
+            <if test="categoryId!=null">
+                and category_id = #{categoryId}
+            </if>
+            <if test="keyword!=null">
+                and item_name like concat('%',#{keyword},'%')
+            </if>
+            <if test="status!=null">
+                and status = #{status}
+            </if>
+            <if test="itemType!=null">
+                and item_type = #{itemType}
+            </if>
+            <if test="userId!=null">
+                and user_id = #{userId}
+            </if>
+        </where>
+        order by create_time desc
+    </select>
+    <select id="getImagesByItem" resultType="java.lang.String">
+        select url from item_images where item_id = #{itemId};
+    </select>
+</mapper>

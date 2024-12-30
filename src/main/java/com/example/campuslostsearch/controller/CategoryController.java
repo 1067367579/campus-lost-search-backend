@@ -34,8 +34,8 @@ public class CategoryController {
     public Result<Category> addCategory(@RequestBody Category category) {
         log.info("添加类别：{}",category);
         category.setStatus(1);
-        Integer categoryId = categoryMapper.insert(category);
-        return Result.success(Category.builder().categoryId(categoryId).build());
+        categoryMapper.insert(category);
+        return Result.success(Category.builder().categoryId(category.getCategoryId()).build());
     }
 
     @PutMapping("/admin/category/{id}")

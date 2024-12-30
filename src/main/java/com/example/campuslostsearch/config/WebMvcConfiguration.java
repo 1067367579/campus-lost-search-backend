@@ -2,7 +2,6 @@ package com.example.campuslostsearch.config;
 
 import com.example.campuslostsearch.common.json.JacksonObjectMapper;
 import com.example.campuslostsearch.interceptor.JwtTokenInterceptor;
-import com.fasterxml.jackson.databind.ObjectMapper;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Configuration;

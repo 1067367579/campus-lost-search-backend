@@ -16,10 +16,13 @@ public interface CategoryMapper {
     @Insert("insert into category (name,status) values " +
             "(#{name},#{status})")
     @Options(useGeneratedKeys = true, keyProperty = "categoryId", keyColumn = "category_id")
-    int insert(Category category);
+    void insert(Category category);
 
     void update(Category category);
 
     @Select("select category_id, name, status from category")
     List<Category> listAllWithoutStatus();
+
+    @Select("select * from category where category_id = #{categoryId} and status = 1;")
+    Category getById(Integer categoryId);
 }
