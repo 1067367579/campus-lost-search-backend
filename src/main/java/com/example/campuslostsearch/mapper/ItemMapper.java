@@ -27,4 +27,10 @@ public interface ItemMapper {
 
     @Delete("delete from item where item_id = #{itemId}")
     void deleteById(Long itemId);
+
+    @Select("select count(*) from item where status = 0 and item_type = 0")
+    Integer getLostCount();
+
+    @Select("select count(*) from item where status = 0 and item_type = 1")
+    Integer getFoundCount();
 }

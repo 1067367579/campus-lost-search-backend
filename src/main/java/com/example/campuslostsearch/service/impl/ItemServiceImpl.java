@@ -12,6 +12,7 @@ import com.example.campuslostsearch.pojo.entity.Item;
 import com.example.campuslostsearch.pojo.entity.User;
 import com.example.campuslostsearch.pojo.vo.ItemPublishVO;
 import com.example.campuslostsearch.pojo.vo.ItemVO;
+import com.example.campuslostsearch.pojo.vo.StatisticVO;
 import com.example.campuslostsearch.service.ItemService;
 import com.github.pagehelper.Page;
 import com.github.pagehelper.PageHelper;
@@ -63,10 +64,11 @@ public class ItemServiceImpl implements ItemService {
                     .username(user.getUsername())
                     .phone(user.getPhone())
                     .email(user.getEmail())
+                    .itemType(item.getItemType())
                     .build();
-            if(pageItemDTO.getItemType() == 0) {
+            if(item.getItemType() == 0) {
                 itemVO.setLostTime(item.getKeyTime());
-            } else {
+            } else if(item.getItemType() == 1){
                 itemVO.setFoundTime(item.getKeyTime());
             }
             return itemVO;
@@ -101,6 +103,8 @@ public class ItemServiceImpl implements ItemService {
     public ItemVO getById(Long itemId) {
         List<String> images = itemMapper.getImagesByItem(itemId);
         Item item = itemMapper.getItemById(itemId);
+        User user = userMapper.getById(item.getUserId());
+        Category category = categoryMapper.getById(item.getCategoryId());
         ItemVO itemVO = ItemVO.builder()
                 .itemId(item.getItemId())
                 .itemName(item.getItemName())
@@ -109,6 +113,13 @@ public class ItemServiceImpl implements ItemService {
                 .description(item.getDescription())
                 .categoryId(item.getCategoryId())
                 .images(images)
+                .createTime(item.getCreateTime())
+                .categoryName(category.getName())
+                .foundTime(item.getKeyTime())
+                .itemType(item.getItemType())
+                .username(user.getUsername())
+                .phone(user.getPhone())
+                .email(user.getEmail())
                 .build();
         if(item.getItemType() == 0) {
             itemVO.setLostTime(item.getKeyTime());
@@ -123,5 +134,14 @@ public class ItemServiceImpl implements ItemService {
     public void updateItem(ItemDTO itemDTO) {
         itemMapper.deleteById(itemDTO.getItemId());
         this.publishItem(itemDTO);
+    }
+
+    @Override
+    @Transactional
+    public StatisticVO getItemStats() {
+        return StatisticVO.builder()
+                .lostItems(itemMapper.getLostCount())
+                .foundItems(itemMapper.getFoundCount())
+                .build();
     }
 }

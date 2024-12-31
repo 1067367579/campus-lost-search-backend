@@ -5,6 +5,7 @@ import com.example.campuslostsearch.pojo.dto.ItemDTO;
 import com.example.campuslostsearch.pojo.dto.PageItemDTO;
 import com.example.campuslostsearch.pojo.vo.ItemPublishVO;
 import com.example.campuslostsearch.pojo.vo.ItemVO;
+import com.example.campuslostsearch.pojo.vo.StatisticVO;
 
 public interface ItemService {
     PageResult<ItemVO> listItem(PageItemDTO build);
@@ -15,4 +16,5 @@ public interface ItemService {
 
     void updateItem(ItemDTO itemDTO);
 
+    StatisticVO getItemStats();
 }

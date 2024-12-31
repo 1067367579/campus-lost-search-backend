@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.example.campuslostsearch.mapper.ClaimMapper">
+
+    <select id="pageQuery" resultType="com.example.campuslostsearch.pojo.entity.Claim">
+        select * from claim
+        <where>
+            <if test="userId!=null">
+                and user_id = #{userId}
+            </if>
+            <if test="status!=null">
+                and status = #{status}
+            </if>
+            <if test="claimType!=null and claimType!=''">
+                and claim_type = #{claimType}
+            </if>
+        </where>
+    </select>
+</mapper>

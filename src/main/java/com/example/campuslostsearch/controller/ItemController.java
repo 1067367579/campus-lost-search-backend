@@ -7,6 +7,7 @@ import com.example.campuslostsearch.pojo.dto.ItemDTO;
 import com.example.campuslostsearch.pojo.dto.PageItemDTO;
 import com.example.campuslostsearch.pojo.vo.ItemPublishVO;
 import com.example.campuslostsearch.pojo.vo.ItemVO;
+import com.example.campuslostsearch.pojo.vo.StatisticVO;
 import com.example.campuslostsearch.service.ItemService;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -36,10 +37,20 @@ public class ItemController {
         return Result.success();
     }
 
+    @GetMapping("/recent-items")
+    public Result<PageResult<ItemVO>> recentItems(@RequestParam Integer pageNum, @RequestParam Integer pageSize) {
+        log.info("获取最新物品：{},{}",pageNum,pageSize);
+        return Result.success(itemService.listItem(PageItemDTO.builder()
+                .status(0)
+                .pageSize(pageSize)
+                .pageNum(pageNum)
+                .build()));
+    }
+
     @GetMapping("/item/my-items")
     public Result<PageResult<ItemVO>> getMyItems(@RequestParam Integer pageNum,
                                                  @RequestParam Integer pageSize,
-                                                 @RequestParam Integer itemType) {
+                                                 @RequestParam(required = false) Integer itemType) {
         log.info("查看我的物品：{},{},{}",pageNum,pageSize,itemType);
         return Result.success(itemService.listItem(PageItemDTO.builder()
                 .pageNum(pageNum)
@@ -48,6 +59,15 @@ public class ItemController {
                         .userId(BaseContext.getCurrentId())
                 .build()));
     }
+
+    @GetMapping("/stats")
+    public Result<StatisticVO> getItemStats() {
+        log.info("查看物品统计数据");
+        StatisticVO statisticVO = itemService.getItemStats();
+        return Result.success(statisticVO);
+    }
+
+
 
     //根据itemId查找物品
     @GetMapping("/item/{itemId}")
