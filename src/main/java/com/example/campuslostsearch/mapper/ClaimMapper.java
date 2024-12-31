@@ -8,8 +8,8 @@ import java.util.List;
 @Mapper
 public interface ClaimMapper {
 
-    @Insert("insert into claim (user_id, item_id, item_type, description) VALUES " +
-            "(#{userId},#{itemId},#{itemType},#{description})")
+    @Insert("insert into claim (user_id, item_id, item_type, description,evidence,claim_type) VALUES " +
+            "(#{userId},#{itemId},#{itemType},#{description},#{evidence},#{claimType})")
     @Options(useGeneratedKeys = true,keyProperty = "claimId",keyColumn = "claim_id")
     void save(Claim claim);
 

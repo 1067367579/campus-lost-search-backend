@@ -17,4 +17,5 @@ public interface UserService {
     void updateUserInfo(UserUpdateDTO userUpdateDTO);
 
     void updatePassword(UserPasswordDTO userPasswordDTO);
+
 }
