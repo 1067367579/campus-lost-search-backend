@@ -26,6 +26,7 @@ import java.util.List;
 import java.util.concurrent.CompletableFuture;
 
 @Service
+@Transactional
 public class ClaimServiceImpl implements ClaimService {
 
     @Autowired

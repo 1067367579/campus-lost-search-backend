@@ -1,5 +1,6 @@
 package com.example.campuslostsearch.mapper;
 
+import com.example.campuslostsearch.annotation.AdminAction;
 import com.example.campuslostsearch.pojo.entity.Claim;
 import org.apache.ibatis.annotations.*;
 
@@ -7,7 +8,6 @@ import java.util.List;
 
 @Mapper
 public interface ClaimMapper {
-
     @Insert("insert into claim (user_id, item_id, item_type, description,evidence,claim_type) VALUES " +
             "(#{userId},#{itemId},#{itemType},#{description},#{evidence},#{claimType})")
     @Options(useGeneratedKeys = true,keyProperty = "claimId",keyColumn = "claim_id")
@@ -21,6 +21,7 @@ public interface ClaimMapper {
     @Select("select * from claim where claim_id = #{claimId}")
     Claim getById(Long claimId);
 
+    @AdminAction
     @Update("update claim set status = #{status},handle_remark = #{handleRemark},handle_time = CURRENT_TIMESTAMP where claim_id = #{claimId}")
     void handleClaim(Claim claim);
 }

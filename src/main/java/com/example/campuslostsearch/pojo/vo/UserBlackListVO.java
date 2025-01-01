@@ -1,6 +1,5 @@
 package com.example.campuslostsearch.pojo.vo;
 
-import com.example.campuslostsearch.pojo.entity.BlackList;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;

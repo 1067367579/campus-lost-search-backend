@@ -8,7 +8,6 @@ import com.example.campuslostsearch.pojo.entity.User;
 import com.example.campuslostsearch.pojo.vo.*;
 import com.example.campuslostsearch.service.UserService;
 import lombok.extern.slf4j.Slf4j;
-import org.apache.ibatis.annotations.Insert;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 

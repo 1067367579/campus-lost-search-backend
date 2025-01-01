@@ -11,7 +11,6 @@ import com.example.campuslostsearch.pojo.vo.ClaimRecordVO;
 import com.example.campuslostsearch.pojo.vo.ClaimVO;
 import com.example.campuslostsearch.service.ClaimService;
 import lombok.extern.slf4j.Slf4j;
-import org.apache.ibatis.annotations.Results;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 

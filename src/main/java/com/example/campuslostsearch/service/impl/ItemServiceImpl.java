@@ -26,6 +26,7 @@ import java.util.List;
 
 @Service
 @Slf4j
+@Transactional
 public class ItemServiceImpl implements ItemService {
 
     @Autowired
