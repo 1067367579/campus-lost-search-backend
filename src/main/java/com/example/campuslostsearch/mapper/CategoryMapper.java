@@ -1,7 +1,11 @@
 package com.example.campuslostsearch.mapper;
 
+import com.example.campuslostsearch.annotation.AdminAction;
 import com.example.campuslostsearch.pojo.entity.Category;
-import org.apache.ibatis.annotations.*;
+import org.apache.ibatis.annotations.Insert;
+import org.apache.ibatis.annotations.Mapper;
+import org.apache.ibatis.annotations.Options;
+import org.apache.ibatis.annotations.Select;
 
 import java.util.List;
 
@@ -15,6 +19,7 @@ public interface CategoryMapper {
     @Options(useGeneratedKeys = true, keyProperty = "categoryId", keyColumn = "category_id")
     void insert(Category category);
 
+    @AdminAction
     void update(Category category);
 
     @Select("select category_id, name, status from category")

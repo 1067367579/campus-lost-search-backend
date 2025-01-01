@@ -4,7 +4,10 @@ import com.example.campuslostsearch.annotation.AdminAction;
 import com.example.campuslostsearch.pojo.dto.BlockUserDTO;
 import com.example.campuslostsearch.pojo.entity.BlackList;
 import com.example.campuslostsearch.pojo.vo.BlackListVO;
-import org.apache.ibatis.annotations.*;
+import org.apache.ibatis.annotations.Delete;
+import org.apache.ibatis.annotations.Insert;
+import org.apache.ibatis.annotations.Mapper;
+import org.apache.ibatis.annotations.Select;
 
 import java.util.List;
 
