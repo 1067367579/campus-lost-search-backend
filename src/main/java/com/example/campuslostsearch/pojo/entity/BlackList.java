@@ -1,4 +1,4 @@
-package com.example.campuslostsearch.pojo.vo;
+package com.example.campuslostsearch.pojo.entity;
 
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -11,7 +11,11 @@ import java.time.LocalDateTime;
 @NoArgsConstructor
 @AllArgsConstructor
 @Builder
-public class ComplaintCommitVO {
-    private Long complaintId;
+public class BlackList {
+    private Long blackListId;
+    private Long userId;
+    private String reason;
+    private Integer type;
     private LocalDateTime createTime;
+    private Long adminId;
 }

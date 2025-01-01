@@ -1,13 +1,15 @@
 package com.example.campuslostsearch.pojo.dto;
 
 import lombok.AllArgsConstructor;
+import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
-public class ComplaintDTO {
-    private Long claimId;
-    private String reason;
+@Builder
+public class PageComplaintDTO {
+    private Long userId;
+    private Integer status;
 }

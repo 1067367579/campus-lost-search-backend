@@ -1,11 +1,9 @@
 package com.example.campuslostsearch.service;
 
-import com.example.campuslostsearch.pojo.dto.UserLoginDTO;
-import com.example.campuslostsearch.pojo.dto.UserPasswordDTO;
-import com.example.campuslostsearch.pojo.dto.UserRegisterDTO;
-import com.example.campuslostsearch.pojo.dto.UserUpdateDTO;
+import com.example.campuslostsearch.common.result.PageResult;
+import com.example.campuslostsearch.pojo.dto.*;
 import com.example.campuslostsearch.pojo.entity.User;
-import com.example.campuslostsearch.pojo.vo.UserLoginVO;
+import com.example.campuslostsearch.pojo.vo.*;
 
 public interface UserService {
     UserLoginVO login(UserLoginDTO userLoginDTO);
@@ -18,4 +16,17 @@ public interface UserService {
 
     void updatePassword(UserPasswordDTO userPasswordDTO);
 
+    PageResult<UserVO> listAdmin(Integer pageNum, Integer pageSize, String username,Integer status,Integer userType);
+
+    void blockUser(BlockUserDTO blockUserDTO);
+
+    void unlockUser(Long userId);
+
+    void changeAdminStatus(Long userId,Integer status);
+
+    UserBlackListVO getUserDetail(Long userId);
+
+    StatisticAdminVO getStatistic();
+
+    PageResult<OperationLogVO> listLogs(LogDTO build);
 }

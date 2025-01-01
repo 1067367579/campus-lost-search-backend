@@ -1,17 +1,17 @@
-package com.example.campuslostsearch.pojo.vo;
+package com.example.campuslostsearch.pojo.dto;
 
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
-import java.time.LocalDateTime;
-
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
 @Builder
-public class ComplaintCommitVO {
+public class ComplaintHandleDTO {
     private Long complaintId;
-    private LocalDateTime createTime;
+    private String feedback;
+    private Long adminId;
+    private boolean needPunish;
 }

@@ -21,4 +21,35 @@
         </set>
         where user_id = #{userId};
     </update>
+    <select id="pageQuery" resultType="com.example.campuslostsearch.pojo.entity.User">
+        select * from user
+        <where>
+            <if test="username!=null and username!=''">
+                and username like concat('%',#{username},'%')
+            </if>
+            <if test="userType!=null">
+                and user_type = #{userType}
+            </if>
+            <if test="status!=null">
+                and status = #{status}
+            </if>
+        </where>
+    </select>
+    <select id="listLogs" resultType="com.example.campuslostsearch.pojo.vo.OperationLogVO">
+        select * from operation_log_view
+        <where>
+            <if test="username!=null and username!=''">
+                and username like concat('%',#{username},'%')
+            </if>
+            <if test="operationType != null and operationType!=''">
+                 and operationType = #{operationType}
+            </if>
+            <if test='startTime != null'>
+                 AND createTime &gt;= #{startTime}
+            </if>
+            <if test='endTime != null'>
+                 AND createTime &lt;= #{endTime}
+            </if>
+        </where>
+    </select>
 </mapper>

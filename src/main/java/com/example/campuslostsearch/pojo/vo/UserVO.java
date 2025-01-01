@@ -11,7 +11,13 @@ import java.time.LocalDateTime;
 @NoArgsConstructor
 @AllArgsConstructor
 @Builder
-public class ComplaintCommitVO {
-    private Long complaintId;
+public class UserVO {
+    private String username;
+    private Long userId;
     private LocalDateTime createTime;
+    private Integer status;
+    private String idNumber;
+    private String phone;
+    private String email;
+    private boolean inBlackList;
 }

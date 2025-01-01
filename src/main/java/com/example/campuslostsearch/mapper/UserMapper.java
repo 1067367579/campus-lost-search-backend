@@ -1,10 +1,16 @@
 package com.example.campuslostsearch.mapper;
 
+import com.example.campuslostsearch.pojo.dto.LogDTO;
+import com.example.campuslostsearch.pojo.dto.PageUserDTO;
 import com.example.campuslostsearch.pojo.dto.UserLoginDTO;
 import com.example.campuslostsearch.pojo.entity.User;
+import com.example.campuslostsearch.pojo.vo.OperationLogVO;
+import com.example.campuslostsearch.pojo.vo.StatisticAdminVO;
 import org.apache.ibatis.annotations.Insert;
 import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Select;
+
+import java.util.List;
 
 @Mapper
 public interface UserMapper {
@@ -30,4 +36,11 @@ public interface UserMapper {
     User getById(Long userId);
 
     void updateUser(User user);
+
+    List<User> pageQuery(PageUserDTO pageUserDTO);
+
+    @Select("select * from admin_dashboard_stats")
+    StatisticAdminVO getStatisticAdmin();
+
+    List<OperationLogVO> listLogs(LogDTO logDTO);
 }
