@@ -99,6 +99,7 @@ public class ComplaintServiceImpl implements ComplaintService {
                             .handleRemark("经投诉审核后撤销领回单，请立即还回物品")
                             .claimId(claim.getClaimId())
                     .build());
+            complaintMapper.changeStatus(1, complaint.getComplaintId());
             return;
         }
         complaintMapper.processComplaint(complaintHandleDTO);

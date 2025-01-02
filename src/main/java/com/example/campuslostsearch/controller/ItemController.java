@@ -50,12 +50,16 @@ public class ItemController {
     @GetMapping("/item/my-items")
     public Result<PageResult<ItemVO>> getMyItems(@RequestParam Integer pageNum,
                                                  @RequestParam Integer pageSize,
-                                                 @RequestParam(required = false) Integer itemType) {
+                                                 @RequestParam(required = false) Integer itemType,
+                                                 @RequestParam(required = false) Integer categoryId,
+                                                 @RequestParam(required = false) Integer status ){
         log.info("查看我的物品：{},{},{}",pageNum,pageSize,itemType);
         return Result.success(itemService.listItem(PageItemDTO.builder()
                 .pageNum(pageNum)
                 .pageSize(pageSize)
                 .itemType(itemType)
+                        .status(status)
+                        .categoryId(categoryId)
                         .userId(BaseContext.getCurrentId())
                 .build()));
     }
